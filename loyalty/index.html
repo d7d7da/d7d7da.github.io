@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#141516">
-<title>نظام ولاء العملاء للكوفيهات — بدون تطبيق، عبر واتساب</title>
-<meta name="description" content="نظام ولاء يشتغل بالواتساب: العميل يمسح رمزاً عند الكاشير فيسجّل زيارته ويجيه رصيده. مكافأة كل 5 زيارات، وتقرير أسبوعي لصاحب الكوفي. بدون تطبيق وبدون بطاقات ورقية.">
+<title>نظام ولاء العملاء — كيف يشتغل</title>
+<meta name="description" content="شرح نظام ولاء العملاء للكوفيهات: العميل يمسح رمزاً عند الكاشير فتُسجّل زيارته عبر واتساب، ومكافأة عند اكتمال العدد، وتقرير أسبوعي لصاحب الكوفي.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,8 +14,7 @@
     --bg:#141516; --surface:#1C1E1F; --raised:#26292A;
     --line:#303334; --line-soft:#252829;
     --txt:#ECEDED; --mut:#9A9E9F; --faint:#8B9092;
-    --accent:#6E97C4; --accent-press:#5E85B0;
-    --ok:#6E9C7E;
+    --accent:#6E97C4;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
@@ -24,21 +23,15 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:680px;margin:0 auto;padding:0 20px}
-  section{padding:52px 0;border-bottom:1px solid var(--line-soft)}
+  section{padding:46px 0;border-bottom:1px solid var(--line-soft)}
   section:last-of-type{border:0}
 
-  /* هيرو */
-  header{padding:64px 0 52px;text-align:center}
-  .eyebrow{display:inline-block;color:var(--accent);font-size:13px;border:1px solid var(--line);
-    background:var(--surface);border-radius:999px;padding:5px 14px;margin-bottom:20px}
-  h1{font-size:29px;font-weight:600;line-height:1.45;letter-spacing:-.4px;margin-bottom:14px}
-  h1 .hl{color:var(--accent)}
-  .lede{color:var(--mut);font-size:16.5px;font-weight:300;max-width:520px;margin:0 auto}
+  header{padding:56px 0 44px}
+  h1{font-size:25px;font-weight:600;line-height:1.5;letter-spacing:-.3px;margin-bottom:12px}
+  .lede{color:var(--mut);font-size:16px;font-weight:300}
 
-  h2{font-size:21px;font-weight:600;margin-bottom:8px;letter-spacing:-.2px}
-  .sub{color:var(--faint);font-size:14.5px;font-weight:300;margin-bottom:26px}
+  h2{font-size:20px;font-weight:600;margin-bottom:22px;letter-spacing:-.2px}
 
-  /* خطوات */
   .steps{display:grid;gap:12px}
   .step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line-soft);
     border-radius:14px;padding:16px 18px}
@@ -47,80 +40,61 @@
   .step h3{font-size:15.5px;font-weight:500;margin-bottom:3px}
   .step p{color:var(--faint);font-size:14px;font-weight:300;line-height:1.65}
 
-  /* محادثة */
   .chat{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:18px}
   .bub{background:var(--raised);border-radius:14px 14px 14px 4px;padding:11px 14px;
     font-size:14.5px;margin-bottom:9px;max-width:88%;line-height:1.6}
   .bub:last-child{margin-bottom:0}
   .bub b{color:var(--accent);font-weight:600}
 
-  /* تقرير */
   .report{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;
     padding:20px;font-size:14.5px;line-height:2}
   .report .row{display:flex;justify-content:space-between;gap:12px}
-  .report .up{color:var(--ok);font-size:12.5px}
   .report hr{border:0;border-top:1px solid var(--line-soft);margin:12px 0}
   .report .act{color:var(--accent);font-weight:500}
   .report .act small{display:block;color:var(--faint);font-weight:300;font-size:12.5px;line-height:1.6}
 
-  /* مقارنة */
-  table{width:100%;border-collapse:collapse;font-size:14.5px}
-  th,td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--line-soft)}
-  th{color:var(--faint);font-weight:400;font-size:13px}
-  td:first-child{color:var(--mut);font-weight:300}
-  .yes{color:var(--ok)} .no{color:var(--faint)}
+  ul.plain{list-style:none;display:grid;gap:10px}
+  ul.plain li{background:var(--surface);border:1px solid var(--line-soft);border-radius:12px;
+    padding:13px 16px;font-size:14.5px;font-weight:300;color:var(--mut)}
+  ul.plain li b{color:var(--txt);font-weight:500}
 
-  /* نداء */
-  .cta{text-align:center;padding:56px 0}
-  .cta h2{margin-bottom:10px}
-  .cta p{color:var(--mut);font-weight:300;margin-bottom:24px}
-  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#141516;
-    text-decoration:none;border-radius:13px;padding:15px 30px;font-size:16px;font-weight:500;
-    min-height:52px;transition:background .15s ease}
-  .btn:active{background:var(--accent-press)}
-  .btn svg{width:19px;height:19px}
-  .free{margin-top:16px;color:var(--faint);font-size:13.5px;font-weight:300}
-
-  footer{border-top:1px solid var(--line-soft);padding:28px 0 40px;text-align:center;
+  footer{border-top:1px solid var(--line-soft);padding:26px 0 40px;text-align:center;
     color:var(--faint);font-size:13px;font-weight:300}
   footer a{color:var(--mut)}
-  @media (max-width:520px){ h1{font-size:25px} }
+  @media (max-width:520px){ h1{font-size:22px} }
 </style>
 </head>
 <body>
 
 <header class="wrap">
-  <span class="eyebrow">نظام ولاء للكوفيهات</span>
-  <h1>عميلك جاء مرة… <span class="hl">وش يرجّعه؟</span></h1>
-  <p class="lede">نظام ولاء يشتغل عبر واتساب. بدون تطبيق يحمّله العميل، وبدون بطاقات ورق تنضاع.</p>
+  <h1>نظام ولاء العملاء</h1>
+  <p class="lede">يسجّل زيارات عملاء الكوفي عبر واتساب، ويمنح مكافأة عند اكتمال العدد. بدون تطبيق يحمّله العميل، وبدون بطاقات ورقية.</p>
 </header>
 
 <section class="wrap">
   <h2>كيف يشتغل</h2>
-  <p class="sub">من مسح الرمز إلى القهوة المجانية — كله تلقائي</p>
   <div class="steps">
     <div class="step"><div class="n">١</div><div>
       <h3>العميل يمسح رمزاً عند الكاشير</h3>
-      <p>رمز يظهر على شاشة جوال في المحل، ويتغيّر كل دقيقتين. لا يُصوَّر ولا يُشارَك.</p>
+      <p>الرمز يظهر على شاشة جوال أو تابل في المحل، ويتغيّر كل دقيقتين.</p>
     </div></div>
     <div class="step"><div class="n">٢</div><div>
       <h3>يضغط إرسال في واتساب</h3>
-      <p>الرسالة مكتوبة جاهزة. ما يحمّل شي، وما يسجّل حساب.</p>
+      <p>الرسالة تكون مكتوبة جاهزة. لا يحمّل تطبيقاً ولا ينشئ حساباً.</p>
     </div></div>
     <div class="step"><div class="n">٣</div><div>
-      <h3>يجيه رصيده فوراً</h3>
-      <p>«رصيدك 3/5». وعند اكتمال الزيارات يوصله رمز قهوته المجانية.</p>
+      <h3>يصله رصيده</h3>
+      <p>رسالة فيها عدد زياراته. وعند اكتمال العدد يصله رمز المكافأة.</p>
     </div></div>
     <div class="step"><div class="n">٤</div><div>
-      <h3>الكاشير يصرفها بأربعة حروف</h3>
-      <p>يكتب الرمز في شاشته، وتنصرف. ثلاث ثوانٍ.</p>
+      <h3>الكاشير يصرف المكافأة</h3>
+      <p>يكتب رمز العميل في شاشته، فتُصرف ويعود رصيد العميل إلى الصفر.</p>
     </div></div>
   </div>
 </section>
 
 <section class="wrap">
-  <h2>وش يشوفه عميلك</h2>
-  <p class="sub">رسائل تصله في واتساب — بدون أي تطبيق</p>
+  <h2>ما يصل العميل</h2>
   <div class="chat">
     <div class="bub">سجّلنا زيارتك في كوفي الركن ✅<br>رصيدك: <b>3/5</b> ☕</div>
     <div class="bub">مبروك! 🎉<br>قهوتك المجانية جاهزة في كوفي الركن.<br>أرِ هذا الرمز للكاشير:<br><b>R-3K2X</b></div>
@@ -128,11 +102,10 @@
 </section>
 
 <section class="wrap">
-  <h2>وش يوصلك أنت</h2>
-  <p class="sub">تقرير أسبوعي في واتساب — أرقام تتصرّف بناءً عليها</p>
+  <h2>التقرير الأسبوعي لصاحب الكوفي</h2>
   <div class="report">
-    <div class="row"><span>☕ الزيارات</span><span>88 <span class="up">▲ 12%</span></span></div>
-    <div class="row"><span>🆕 عملاء جدد</span><span>12 <span class="up">▲ 3</span></span></div>
+    <div class="row"><span>☕ الزيارات</span><span>88</span></div>
+    <div class="row"><span>🆕 عملاء جدد</span><span>12</span></div>
     <div class="row"><span>🔁 عملاء راجعوا</span><span>34</span></div>
     <div class="row"><span>🎁 قهوات مجانية</span><span>9</span></div>
     <hr>
@@ -140,49 +113,30 @@
     <div class="row"><span>🕐 أكثر وقت</span><span>5 م</span></div>
     <hr>
     <div class="act">🔥 على وشك المكافأة: 7 عملاء
-      <small>زيارة واحدة وتصير قهوتهم مجانية — ذكّرهم</small></div>
+      <small>تفصلهم زيارة واحدة</small></div>
     <div class="act" style="margin-top:10px">😴 عملاء غابوا: 5
-      <small>كانوا يترددون وما زاروا من 14+ يوم</small></div>
+      <small>كانوا يترددون ولم يزوروا منذ 14 يوماً أو أكثر</small></div>
   </div>
+  <p style="color:var(--faint);font-size:13px;font-weight:300;margin-top:12px">الأرقام أعلاه مثال توضيحي لشكل التقرير.</p>
 </section>
 
 <section class="wrap">
-  <h2>ليش مو بطاقة ورق؟</h2>
-  <p class="sub">البطاقة تنضاع، وما تعطيك رقماً واحداً</p>
-  <table>
-    <tr><th>&nbsp;</th><th>بطاقة الأختام</th><th>هذا النظام</th></tr>
-    <tr><td>تنضاع من العميل</td><td class="no">دائماً</td><td class="yes">مستحيل</td></tr>
-    <tr><td>تعرف مين عميلك الدائم</td><td class="no">لا</td><td class="yes">نعم</td></tr>
-    <tr><td>تعرف مين غاب عنك</td><td class="no">لا</td><td class="yes">نعم</td></tr>
-    <tr><td>ختم مزوّر</td><td class="no">ممكن</td><td class="yes">ممنوع</td></tr>
-    <tr><td>تكلفة الطباعة</td><td class="no">متكررة</td><td class="yes">صفر</td></tr>
-  </table>
+  <h2>منع التلاعب</h2>
+  <ul class="plain">
+    <li><b>الرمز يتغيّر كل دقيقتين.</b> صورة الرمز تنتهي صلاحيتها، فلا تُسجَّل زيارة من خارج المحل.</li>
+    <li><b>كل مسح يولّد كوداً لمرة واحدة.</b> إعادة إرسال الرسالة نفسها لا تُحتسب.</li>
+    <li><b>زيارة واحدة لكل عميل خلال ساعة.</b> المدة قابلة للتعديل.</li>
+    <li><b>الصرف من أرقام محددة فقط.</b> الكاشيرية المسجّلون هم من يصرفون.</li>
+  </ul>
 </section>
 
 <section class="wrap">
-  <h2>وش تحتاج؟</h2>
-  <p class="sub">لا أجهزة، ولا تركيب، ولا تدريب</p>
-  <div class="steps">
-    <div class="step"><div class="n">✓</div><div>
-      <h3>أي جوال أو تابل عند الكاونتر</h3>
-      <p>يفتح صفحة واحدة ويخليها مفتوحة. جهاز قديم يكفي.</p>
-    </div></div>
-    <div class="step"><div class="n">✓</div><div>
-      <h3>وبس</h3>
-      <p>ولا شي ثاني. لا شريحة، لا برنامج، لا اشتراك أجهزة.</p>
-    </div></div>
-  </div>
+  <h2>المتطلبات</h2>
+  <ul class="plain">
+    <li><b>جوال أو تابل عند الكاونتر</b> — تُفتح فيه صفحة واحدة وتبقى مفتوحة.</li>
+    <li><b>اتصال إنترنت.</b></li>
+  </ul>
 </section>
-
-<div class="cta wrap">
-  <h2>جرّبه في كوفيك</h2>
-  <p>أشغّله لك وتشوفه شغّال قبل أي التزام</p>
-  <a class="btn" href="https://wa.me/966566765154?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B9%D8%B1%D9%81%20%D8%A3%D9%83%D8%AB%D8%B1%20%D8%B9%D9%86%20%D9%86%D8%B8%D8%A7%D9%85%20%D8%A7%D9%84%D9%88%D9%84%D8%A7%D8%A1">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1a11.3 11.3 0 0 0 4.4 3.9c1.6.6 2.3.7 3.1.6.5-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .9.9-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
-    كلّمني بواتساب
-  </a>
-  <p class="free">تجربة مجانية · بدون التزام · تلغيها متى ما تبي</p>
-</div>
 
 <footer class="wrap">
   <div>عبدالرحمن المعيدي — تطوير تطبيقات وأنظمة برمجية</div>
